@@ -1,0 +1,16 @@
+<h2>Agregar Nueva Tarea</h2>
+
+<form (ngSubmit)="guardarTarea()">
+  <mat-form-field>
+    <mat-label>Título</mat-label>
+    <input matInput [(ngModel)]="tarea.titulo" name="titulo" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Descripción</mat-label>
+    <input matInput [(ngModel)]="tarea.descripcion" name="descripcion">
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit">Guardar</button>
+  <button mat-button (click)="router.navigate(['/'])">Cancelar</button>
+</form>

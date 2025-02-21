@@ -1,0 +1,41 @@
+<button mat-raised-button color="primary" (click)="agregarTarea()">Agregar Tarea</button>
+<!-- Tabla de tareas -->
+<table mat-table [dataSource]="tareas" class="mat-elevation-z8">
+  
+  <!-- Columna Título -->
+  <ng-container matColumnDef="titulo">
+    <th mat-header-cell *matHeaderCellDef> Título </th>
+    <td mat-cell *matCellDef="let tarea"> {{ tarea.titulo }} </td>
+  </ng-container>
+
+  <!-- Columna Descripción -->
+  <ng-container matColumnDef="descripcion">
+    <th mat-header-cell *matHeaderCellDef> Descripción </th>
+    <td mat-cell *matCellDef="let tarea"> {{ tarea.descripcion || '-' }} </td>
+  </ng-container>
+
+  <!-- Columna Estado -->
+  <ng-container matColumnDef="completado">
+    <th mat-header-cell *matHeaderCellDef> Estado </th>
+    <td mat-cell *matCellDef="let tarea">
+      <button mat-icon-button color="primary" (click)="toggleCompletado(tarea)">
+        <mat-icon>{{ tarea.completado ? 'check_circle' : 'radio_button_unchecked' }}</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <!-- Columna Acciones -->
+  <ng-container matColumnDef="acciones">
+    <th mat-header-cell *matHeaderCellDef> Acciones </th>
+    <td mat-cell *matCellDef="let tarea">
+      <button mat-icon-button color="warn" (click)="eliminarTarea(tarea.id!)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <!-- Encabezado y Filas -->
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+</table>
